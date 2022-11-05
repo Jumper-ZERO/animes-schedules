@@ -6,29 +6,35 @@ import AnimeBox from "./AnimeBox";
 const DayBox = ({ day }) => {
   const [checked, setChecked] = useState(false);
   const data = useContext(dataApi);
+  const SIZE_BOTON = 20;
 
   return (
     <div className="">
-      <div className="capitalize text-white text-3xl p-5 bg-gray-800 flex justify-between items-center rounded-lg mb-5">
+      <label
+        htmlFor={day}
+        className="capitalize text-white text-lg p-5 bg-gray-800 flex justify-between items-center rounded-lg mb-5 cursor-pointer"
+      >
         <h1 className="rounded-2xl">{day}</h1>
         <label className="w-1/2 flex justify-end" htmlFor={day}>
-          {checked ? <AiOutlineUp size={30} /> : <AiOutlineDown size={30} />}
+          {checked ? <AiOutlineUp size={SIZE_BOTON} /> : <AiOutlineDown size={SIZE_BOTON} />}
           <input
             className="m-5 hidden"
             id={day}
             type="checkbox"
             onChange={(e) => {
               setChecked(e.target.checked);
+              globalThis[day] = data;
             }}
           />
         </label>
-      </div>
+      </label>
       <div className={checked ? "flex flex-col gap-5" : "hidden"}>
-        {data.map(({ canonicalTitle, id, posterImage }) => (
+        {data.map(({ canonicalTitle, id, posterImage, status }) => (
           <AnimeBox
             key={id}
             image={posterImage.medium}
             title={canonicalTitle}
+            status={status}
           />
         ))}
       </div>

@@ -17,7 +17,7 @@ function BodyBox() {
       .map(({ attributes: datos, id }) => ({ ...datos, id }));
   };
   return (
-    <div className="container mx-auto my-12 flex flex-col gap-4">
+    <div className="container w-[80vw] mx-auto my-12 flex flex-col justify-center gap-4">
       <dataApi.Provider value={newData("lunes")}>
         <DayBox day="lunes" />
       </dataApi.Provider>

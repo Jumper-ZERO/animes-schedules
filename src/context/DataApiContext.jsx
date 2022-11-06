@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import { infoData } from "./fetch";
+import Loading from '../components/Loading';
 
 const dataApi = createContext(null);
 
@@ -16,7 +17,7 @@ function DataApiContext({ children }) {
   }, []);
 
   if (!(data.length > 0)) {
-    return <h1>Cargando...</h1>;
+    return <Loading />
   }
 
   return (
